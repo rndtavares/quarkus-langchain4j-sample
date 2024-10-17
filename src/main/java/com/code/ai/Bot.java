@@ -3,6 +3,9 @@ package com.code.ai;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import io.quarkiverse.langchain4j.RegisterAiService;
+import io.quarkiverse.langchain4j.ToolBox;
+import io.quarkiverse.langchain4j.guardrails.InputGuardrails;
+import jakarta.enterprise.context.ApplicationScoped;
 
 /**
  * This is a sample Bot, it is configured to ingest the 'easy-rag-catalog/'.
@@ -19,6 +22,7 @@ import io.quarkiverse.langchain4j.RegisterAiService;
  *     }
  * }
  */
+@ApplicationScoped
 @RegisterAiService // no need to declare a retrieval augmentor here, it is automatically generated and discovered
 public interface Bot {
 
@@ -28,5 +32,7 @@ public interface Bot {
 
             When you don't know, respond that you don't know the answer and the bank will contact the customer directly.
             """)
-    String chat(@UserMessage String question);
+    @ToolBox(BotTools.class)
+    @InputGuardrails(BotPromptInjectionGuardrail.class)
+    String chat(@UserMessage String message);
 }
