@@ -1,4 +1,4 @@
-package com.code.ai;
+package com.code.ai.guardrails;
 
 import dev.langchain4j.data.message.UserMessage;
 import io.quarkiverse.langchain4j.guardrails.InputGuardrail;

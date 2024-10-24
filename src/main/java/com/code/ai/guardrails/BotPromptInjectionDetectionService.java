@@ -1,4 +1,4 @@
-package com.code.ai;
+package com.code.ai.guardrails;
 
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
