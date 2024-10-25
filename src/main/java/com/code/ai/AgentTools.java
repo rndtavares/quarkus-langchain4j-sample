@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @ApplicationScoped
-public class BotTools {
+public class AgentTools {
 
     @Tool
     LocalDate currentDate() {

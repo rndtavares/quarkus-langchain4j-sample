@@ -6,11 +6,11 @@ import io.quarkiverse.langchain4j.guardrails.InputGuardrailResult;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class BotPromptInjectionGuardrail implements InputGuardrail {
+public class AgentPromptInjectionGuardrail implements InputGuardrail {
 
-    private final BotPromptInjectionDetectionService service;
+    private final AgentPromptInjectionDetectionService service;
 
-    public BotPromptInjectionGuardrail(BotPromptInjectionDetectionService service) {
+    public AgentPromptInjectionGuardrail(AgentPromptInjectionDetectionService service) {
         this.service = service;
     }
 
