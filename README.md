@@ -67,20 +67,20 @@ This code is a very basic sample service to start developing with Quarkus LangCh
 
 This code is set up to use OpenAI as the LLM, thus you need to set the `QUARKUS_LANGCHAIN4J_OPENAI_API_KEY` environment variable to your OpenAI API key.
 
-In `./easy-rag-catalog/` you can find a set of example documents that will be used to create the RAG index which the bot (`src/main/java/org/acme/Bot.java`) will ingest.
+In `./easy-rag-catalog/` you can find a set of example documents that will be used to create the RAG index which the agent (`src/main/java/org/acme/Bot.java`) will ingest.
 
-On first run, the bot will create the RAG index and store it in `easy-rag-catalog.json` file and reuse it on subsequent runs.
+On first run, the agent will create the RAG index and store it in `easy-rag-catalog.json` file and reuse it on subsequent runs.
 This can be disabled by setting the `quarkus.langchain4j.easy-rag.reuse-embeddings.enabled` property to `false`.
 
 Add it to a Rest endpoint:
 ```java
     @Inject
-    Bot bot;
+    Agent agent;
     
     @POST
     @Produces(MediaType.TEXT_PLAIN)
     public String chat(String q) {
-        return bot.chat(q);
+        return agent.chat(q);
     }
 ```
 

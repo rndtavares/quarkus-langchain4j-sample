@@ -4,17 +4,17 @@ import io.quarkus.websockets.next.OnTextMessage;
 import io.quarkus.websockets.next.WebSocket;
 
 @WebSocket(path = "/ws")
-public class BotWSEndpoint {
+public class AgentWSEndpoint {
 
-    private final Bot bot;
+    private final Agent agent;
 
-    BotWSEndpoint(Bot bot) {
-        this.bot = bot;
+    AgentWSEndpoint(Agent agent) {
+        this.agent = agent;
     }
 
     @OnTextMessage
     String reply(String message) {
-        return bot.chat(message);
+        return agent.chat(message);
     }
 
 }
