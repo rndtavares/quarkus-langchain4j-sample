@@ -1,6 +1,6 @@
 package com.code.ai;
 
-import com.code.ai.guardrails.BotPromptInjectionGuardrail;
+import com.code.ai.guardrails.AgentPromptInjectionGuardrail;
 import com.code.ai.guardrails.HallucinationGuard;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
@@ -12,7 +12,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 @RegisterAiService
-public interface Bot {
+public interface Agent {
 
     @SystemMessage("""
             Você é um agente especializado em futebol brasileiro, seu nome é FutAgentBR
@@ -21,8 +21,8 @@ public interface Bot {
 
             Quando você não souber a resposta, responda que você não sabe responder nesse momento mas saberá em futuras versões.
             """)
-    @ToolBox(BotTools.class)
-    @InputGuardrails(BotPromptInjectionGuardrail.class)
+    @ToolBox(AgentTools.class)
+    @InputGuardrails(AgentPromptInjectionGuardrail.class)
     @OutputGuardrails(HallucinationGuard.class)
     String chat(@UserMessage String message);
 }
