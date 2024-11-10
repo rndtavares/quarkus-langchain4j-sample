@@ -23,7 +23,9 @@ public class HallucinationGuard implements OutputGuardrail {
     @Override
     public OutputGuardrailResult validate(OutputGuardrailParams params) {
         Response<Embedding> embeddingOfTheResponse = embedding.embed(params.responseFromLLM().text());
-        if (params.augmentationResult() == null || params.augmentationResult().contents().isEmpty()) {
+        if (params.augmentationResult() == null
+                || params.augmentationResult().contents() == null
+                || params.augmentationResult().contents().isEmpty()) {
             Log.info("No content to validate against");
             return success();
         }
